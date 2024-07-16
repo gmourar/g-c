@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa cmg pf</title>
+    <style>
+        body {
+            background-color: #aaaef2;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
+
+        .conteudo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .botoes button {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .yes {
+            border: solid 2px green;
+            background-color: lightgreen;
+            border-radius: 5px;
+        }
+
+        .no {
+            border: solid 2px red;
+            background-color: rgb(241, 104, 104);
+            border-radius: 5px;
+        }
+
+        .heart, .heart-image, .emoji {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: float 5s linear infinite;
+        }
+
+        .heart {
+            background-color: red;
+            transform: rotate(45deg);
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+
+        .heart-image {
+            background: url('heart.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .emoji {
+            font-size: 50px;
+            animation: float 5s linear infinite, fadeIn 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" src="chuva.mp3" loop></audio>
+
+    <div class="conteudo">
+        <h1 id="text">Casa cmg carolina pf nunca te pedi nada vai vai vai</h1>
+        <div class="botoes">
+            <button class="yes" onclick="sim()">Sim</button>
+            <button class="no" id="btn" onmouseover="desviar()">Não</button>
+        </div>
+    </div>
+
+    <script>
+        function sim(){
+            alert("EBAAAAAAAAAAAAAA 🦋🦋🦋");
+            document.getElementById("text").innerText = "Fez a escolha certa meu lov ❤️🦋🦋🦋❤️";
+            document.getElementById("bg-music").play();
+
+            for (let i = 0; i < 150; i++) {
+                createHeart('heart');
+                createHeart('heart-image');
+                createEmoji();
+            }
+        }
+
+        function createHeart(type) {
+            const heart = document.createElement('div');
+            heart.classList.add(type);
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-50px';
+            heart.style.animationDuration = Math.random() * 20 + 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerText = '🦋';
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.bottom = '-50px';
+            emoji.style.animationDuration = Math.random() * 20 + 2 + 's';
+            document.body.appendChild(emoji);
+
+            setTimeout(() => {
+                emoji.remove();
+            }, 5000);
+        }
+
+        function desviar(){
+            var btn = document.getElementById('btn');
+            btn.style.position = 'absolute';
+            btn.style.bottom = random(10, 90);
+            btn.style.left = random(10, 90);
+        }
+
+        function random(min, max){
+            return Math.random() * (max - min) + min + '%';
+        }
+    </script>
+</body>
+</html>
